@@ -7,11 +7,13 @@
 ## NN Archives 
 
 -References on how to change various things
+
 -Not populated, at all
 
 ## EvenOdds 
 
 -NN used to represent function and Even and Odd Built into architecture
+
 -Succesful in its implementation. Alternate implementations exists using NN(x) = k 1[f(x) + f(-x)]
 
 ## Custom Training 
