@@ -1,0 +1,4 @@
+\contentsline {section}{\numberline {0.1}General Training Parameters \& Rationale}{2}{section.0.1}%
+\contentsline {section}{\numberline {0.2}Neural Network Depth Study}{2}{section.0.2}%
+\contentsline {section}{\numberline {0.3}Neural Network Breadth Study}{7}{section.0.3}%
+\contentsline {section}{\numberline {0.4}Appendix}{12}{section.0.4}%

@@ -1,0 +1,20 @@
+domain = [0.0, 4.0]
+layers = [1, 160, 160, 1]
+activations = ['None', 'tanh', 'tanh', 'linear']
+N_mode = 20
+N_quad = 201
+to_read_init_weight = False
+_epsilon = 1.00000000000000e-14
+Ck_continuity = 1
+batch_size = 201
+early_stop_patience = 1000
+maximum_epochs = 250000
+default_learning_rate = 1.000000047497e-03
+actual_learning_rate = 1.000000047497e-04
+training_elapsed_time (seconds) = 1.03357965512900e+03
+prediction_elapsed_time (seconds) = 7.17662499955622e-02
+solution parameter: lambda = 1.000000000000e+01
+solution parameter: aa = 0.000000000000e+00
+bc/Ck-continuity penalty coefficient: 9.000000000000e-01
+equation penalty coefficient: 1.000000000000e-01
+solution errors -- linf-error = 5.92097182812168e-05,  l2-error = 1.34387142001869e-05

@@ -1,0 +1,20 @@
+\contentsline {section}{\numberline {0.1}Modifying Learning Rate}{2}{section.0.1}%
+\contentsline {subsection}{\numberline {0.1.1}Simple Learning Case}{2}{subsection.0.1.1}%
+\contentsline {subsection}{\numberline {0.1.2}Implementation to Helmholtz Script}{3}{subsection.0.1.2}%
+\contentsline {section}{\numberline {0.2}Convergence Criteria}{5}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}Theoretical Criteria}{5}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}Programming Implementation}{6}{subsection.0.2.2}%
+\contentsline {section}{\numberline {0.3}Automated Testing Results}{6}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}Plotting Algorithm}{6}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {0.3.2}Plots Across Constant Width}{8}{subsection.0.3.2}%
+\contentsline {subsubsection}{30 Nodes}{8}{section*.2}%
+\contentsline {subsubsection}{100 Nodes}{11}{section*.3}%
+\contentsline {subsubsection}{180 Nodes}{14}{section*.4}%
+\contentsline {subsection}{\numberline {0.3.3}Plots Across Constant Depth}{17}{subsection.0.3.3}%
+\contentsline {subsubsection}{2 Hidden Layers}{17}{section*.5}%
+\contentsline {subsubsection}{5 Hidden Layers}{20}{section*.6}%
+\contentsline {subsubsection}{8 Hidden Layers}{23}{section*.7}%
+\contentsline {section}{\numberline {0.4}Analysis}{25}{section.0.4}%
+\contentsline {section}{\numberline {0.5}Further Development}{26}{section.0.5}%
+\contentsline {section}{\numberline {0.6}Appendix}{26}{section.0.6}%
+\contentsline {subsection}{\numberline {0.6.1}Tabulated Error}{26}{subsection.0.6.1}%

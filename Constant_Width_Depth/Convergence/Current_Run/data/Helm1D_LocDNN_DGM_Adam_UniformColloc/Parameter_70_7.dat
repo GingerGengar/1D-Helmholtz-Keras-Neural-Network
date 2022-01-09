@@ -1,0 +1,20 @@
+domain = [0.0, 4.0]
+layers = [1, 70, 70, 70, 70, 70, 70, 70, 1]
+activations = ['None', 'tanh', 'tanh', 'tanh', 'tanh', 'tanh', 'tanh', 'tanh', 'linear']
+N_mode = 20
+N_quad = 201
+to_read_init_weight = False
+_epsilon = 1.00000000000000e-14
+Ck_continuity = 1
+batch_size = 201
+early_stop_patience = 1000
+maximum_epochs = 250000
+default_learning_rate = 1.000000047497e-03
+actual_learning_rate = 1.000000047497e-04
+training_elapsed_time (seconds) = 5.28380518867001e+02
+prediction_elapsed_time (seconds) = 9.42051550009637e-02
+solution parameter: lambda = 1.000000000000e+01
+solution parameter: aa = 0.000000000000e+00
+bc/Ck-continuity penalty coefficient: 9.000000000000e-01
+equation penalty coefficient: 1.000000000000e-01
+solution errors -- linf-error = 1.10585611538205e-04,  l2-error = 2.14580942479753e-05

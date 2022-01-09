@@ -1,0 +1,12 @@
+Minimum Width: Width Step: Number of Width Steps: Minimum Depth: Depth Step: Number of Depth Steps: Log Level: Running for Width:  80  Depth:  1
+Running for Width:  80  Depth:  2
+Running for Width:  80  Depth:  3
+Running for Width:  80  Depth:  4
+Running for Width:  80  Depth:  5
+Running for Width:  80  Depth:  6
+Running for Width:  80  Depth:  7
+Running for Width:  80  Depth:  8
+Running for Width:  80  Depth:  9
+Running for Width:  80  Depth:  10
+Minimum Width: Width Step: Number of Width Steps: Minimum Depth: Depth Step: Number of Depth Steps: Log Level: Running for Width:  10  Depth:  1
+Running for Width:  10  Depth:  2

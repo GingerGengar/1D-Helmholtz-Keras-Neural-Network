@@ -1,0 +1,147 @@
+\documentclass[a4paper, 12pt]{report}
+
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{array}
+
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\def\t{\theta}
+\def\a{\alpha}
+\def\be{\beta}
+\def\w{\omega}
+\def\la{\lambda}
+\def\g{\gamma}
+\def\f{\frac}
+\def\l{\left}
+\def\r{\right}
+\def\dst{\displaystyle}
+\def\b{\bar}
+\def\h{\hat}
+\def\ph{\phi}
+\def\d{\cdot}
+\def\n{\nabla}
+\def\p{\partial}
+\def\lap{\mathcal{L}}
+\def\size{0.20}
+\def\tabsize{2.7cm}
+\def\ltabsize{5.5cm}
+
+%\let\stdsection\section
+%\renewcommand\section{\newpage\stdsection}
+%\geometry{portrait, margin= 0.8in}
+
+\begin{document}
+
+\title{Tensor Flow API Reference}
+\author{Hans C. Suganda}
+\date{$9^{th}$ August 2021}
+\maketitle
+\newpage
+
+\lstset{
+	columns=fullflexible,
+	frame=single,
+	breaklines=true,
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	keepspaces=true,                 
+	numbersep=5pt,                  
+	showspaces=false,               
+	showtabs=false,                  
+	tabsize=2
+}
+
+%\tableofcontents
+
+\begin{center}
+%Seperator
+%Seperator
+%Seperator
+\section*{Rationale}
+\begin{comment}
+\end{comment}
+The goal of this document is to define basic tasks and execute said basic tasks. The tasks serve as the currently most efficient known way of familiarizing oneself with the api calls of the neural network library tensorflow.
+%Seperator
+%Seperator
+%Seperator
+\section*{Basic Terminology}
+\begin{comment}
+\end{comment}
+Loss function refers uses the neural network outputs and supposed output to produce a loss score. The loss score is then fed to the optimizer which then changes all of the weights. 
+%Seperator
+%Seperator
+%Seperator
+\section*{Loading Data}
+\begin{comment}
+\end{comment}
+Mnist database is a large database of handwritten digits. Loading and initializing two variables, to the training data is shown below,
+\begin{lstlisting}
+from keras.datasets import mnist
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data() 
+\end{lstlisting}
+train$\_$images and test$\_$images would be numpy arrays of $28\times 28$ numpy arrays whose elements hold the pixel value.
+%Seperator
+%Seperator
+%Seperator
+\section*{Specifying Architecture}
+\begin{comment}
+\end{comment}
+Specify the Architecture of the Neural Network:
+An example of of specifying how many hidden layers along with the various activation functions is shwon below,
+\begin{lstlisting}
+from keras import models
+from keras import layers
+
+network = models.Sequential() 
+network.add(layers.Dense(512, activation='relu', input_shape=(28 * 28,))) 
+network.add(layers.Dense(10, activation='softmax')) 
+\end{lstlisting}
+%Seperator
+%Seperator
+%Seperator
+\section*{Specifying Loss Function}
+\begin{comment}
+\end{comment}
+
+%Seperator
+%Seperator
+%Seperator
+\section*{Training and Evaluation}
+\begin{comment}
+\end{comment}
+
+The api command that is used to train the neural network,
+\begin{lstlisting}
+network.fit(train_images, train_labels, epochs=5, batch_size=128)
+\end{lstlisting}
+
+The api command that is used to find the accuracy of the neural network over a range of test cases,
+\begin{lstlisting}
+test_loss, test_acc = network.evaluate(test_images, test_labels)
+\end{lstlisting}
+wherein the test$\_$loss variable represents the test loss, and is somewhat arbitrary. The test$\_$acc variable holds the value of the test accuracy and this is expressed in decimal points, ranging from $0$ till $1$.
+$$0 = x^2 + x + 3$$
+%Seperator
+%Seperator
+%Seperator
+\end{center}
+
+\end{document}
+
+

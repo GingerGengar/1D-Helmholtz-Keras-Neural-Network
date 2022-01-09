@@ -1,0 +1,447 @@
+\documentclass[a4paper, 12pt]{report}
+
+%Packages Used
+\usepackage{amsmath}
+\usepackage{esint}
+\usepackage{comment}
+\usepackage{amssymb}
+\usepackage{commath}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{listings}
+\usepackage{xcolor}
+\usepackage{array}
+\usepackage{collcell}
+
+%lstlisting colorset
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+%Variable Declarations
+\def\t{\theta}
+\def\a{\alpha}
+\def\be{\beta}
+\def\w{\omega}
+\def\la{\lambda}
+\def\g{\gamma}
+\def\f{\frac}
+\def\l{\left}
+\def\r{\right}
+\def\dst{\displaystyle}
+\def\b{\bar}
+\def\h{\hat}
+\def\ph{\phi}
+\def\d{\cdot}
+\def\na{\nabla}
+\def\p{\partial}
+\def\lap{\mathcal{L}}
+\def\size{0.90}
+\def\sized{0.22}
+\def\sizes{0.29}
+\def\sizem{1.0}
+\def\sizel{1.03}
+\def\ss{\substack}
+
+\def\plotsize{0.9}
+\def\tabsize{2.4cm}
+\def\ltabsize{3.7cm}
+\def\xltabsize{6.0cm}
+
+%For standard Sections
+\let\stdsection\section
+\renewcommand\section{\newpage\stdsection}
+
+%For Long Numerical Table Entries
+\newcolumntype{N}[1]{>{\collectcell\everytokenbreak}p{#1}<{\endcollectcell}}
+\makeatletter
+\newcommand\everytokenbreak[1]
+  {%
+    \everytokenbreak@#1&%
+  }
+\long\def\everytokenbreak@#1%
+  {%
+    \ifx&#1
+    \else
+      #1\hspace{0pt plus 1pt minus 1pt}%
+      \expandafter\everytokenbreak@
+    \fi
+  }
+\makeatother
+
+
+\geometry{portrait, margin= 0.8in}
+\makeatother
+
+\begin{document}
+
+\title{AAE 41200 Homework 7}
+\author{Hans C. Suganda}
+\date{$1^{st}$ November 2021}
+\maketitle
+\newpage
+
+\lstset{
+	columns=fullflexible,
+	frame=single,
+	breaklines=true,
+	backgroundcolor=\color{backcolour},   
+	commentstyle=\color{codegreen},
+	keywordstyle=\color{magenta},
+	numberstyle=\tiny\color{codegray},
+	stringstyle=\color{codepurple},
+	basicstyle=\ttfamily\footnotesize,
+	keepspaces=true,                 
+	numbersep=5pt,                  
+	showspaces=false,               
+	showtabs=false,                  
+	tabsize=2
+}
+
+\tableofcontents
+
+\begin{center}
+%Seperator
+%Seperator
+%Seperator
+\section{Problem 1}
+\begin{comment}
+\end{comment}
+%Seperator
+%Seperator
+\subsection{Part a}
+To find the appropriate number of grids such that the problem is grid independent to a certain degree of accuracy, the number of horizontal grids used \url{ni} is doubled and \url{nj} is changed such that the ratio of \url{nj} to \url{ni} is roughly constant. Lift coefficient is monitored for each grid sizes and the appropriate number of grids in this solution would be defined as the number of grids such that the lift coefficient does not vary by more than $0.1\%$ between a finer and coarser grid. \url{ni} and \url{nj} are determined by trial and error. $3$ grid points on the top surface of the airfoil and $3$ grid points on the bottom of the airfoil leads \url{ni} to be $5$. This is the coarsest grid that looks decent enough to run a complete simulation without problems. The smallest value of \url{nj} that makes the grid at least $100$ chord lengths away from the airfofil was found to be $6$ when \url{ni} was $5$. \url{ni} is approximately doubled with \url{nj} exactly doubled when moving to a finer grid. The table below shows \url{ni}, \url{nj}, their ratios, and the lift coefficient.
+\\~\\\begin{tabular}{|m{\tabsize}|m{\tabsize}|m{\tabsize}|m{\ltabsize}|}
+\hline 
+\url{ni} & \url{nj} & \url{ni}/\url{nj} & $c_L$ \\ \hline
+5 & 6 & 0.833 & 0.6833086E+01 \\ \hline
+11 & 12 & 0.917 & 0.1123247E+01 \\ \hline
+23 & 24 & 0.958 & 0.1339184E+01 \\ \hline
+47 & 48 & 0.979 & 0.1427398E+01 \\ \hline
+95 & 96 & 0.990 & 0.1438715E+01 \\ \hline
+191 & 192 & 0.995 & 0.1439292E+01 \\ \hline
+\end{tabular}
+\\~\\The coefficient of lift has not changed by $0.1\%$ between grid points $95$ and $191$,
+$$1.437852708 \leq c_{L,95}\leq 1.440731292$$
+Hence, the $ni = 191$ and $nj = 192$ would be a fine enough grid to proceed with the analysis of the fluid flow.
+%Seperator
+%Seperator
+\subsection{Part b}
+The python script below plots the history of the lift coefficient as a variation of iteration count,
+\begin{lstlisting}[language=python]
+#Author: Hans C. Suganda
+import matplotlib.pyplot as plt
+import numpy as np
+
+#Reading from Files
+History1 = np.genfromtxt("history1.txt")
+History2 = np.genfromtxt("history.txt")
+lowerindex = 100
+upperindex = 15000
+
+#Plotting Velocity Profile Plot
+plt.figure()
+plt.semilogy(History1[lowerindex:upperindex,0], History1[lowerindex:upperindex,1], label='w=1')
+plt.semilogy(History2[lowerindex:upperindex,0], History2[lowerindex:upperindex,1], label='w=1.6')
+plt.xlabel('Iteration Count')
+plt.ylabel('Coefficient of Lift')
+plt.title('Time History of Lift Coefficient')
+plt.legend()
+plt.grid()
+plt.savefig('LiftHistory.png', dpi=1000)
+
+plt.show()
+\end{lstlisting}
+$$$$
+The history of the lift coefficient as a variation of iteration count is shown below for the Gauss Seidel iteration and the SOR iterations,
+\\~\\\includegraphics[scale=\size]{LiftHistory.png}
+\\~\\Both values of $\w$ have the coefficient of lift "converge" around a certain range of values by approximately iteration $n=3000$. These values however do not represent the true converged coefficient of lift to machine precision. The overrelaxation parameter $\w=1.6$ allows the solver to "converge" to some value much more quickly than when $\w=1$ for the Gauss-Seidel method. 
+\\~\\However, when $\w=1.6$, the solver will not truly converge even until iteration $n=200000$. In fact, for ranges of $\w = [1.3, 1.4, 1.5, 1.6, 1.7]$ the solver will never converge until machine precision. This is tested until iteration $n=200000$. The coefficient of lift will just keep changing around $c_L=1.439$ and not converge to machine precision. When $\w=1$ however, the solver does converge to machine precision $c_L = 1.439292$. Therefore, increasing the overrelaxation parameter to a value greater than $1$ would allow the coefficient of lift to "converge" to the neighbourhood of the true numerical solution faster, but will not allow the coefficient of lift to truly converge to the true numerical solution at machine precision.
+%Seperator
+%Seperator
+\subsection{Part c}
+The Matlab script that plots the airfoil geometry without grids is shown below,
+\begin{lstlisting}[language=matlab]
+%Author: Hans C. Suganda
+
+%Load Data
+load airfoil.txt
+
+%Plot Commands
+figure(1)
+plot(airfoil(:,1), airfoil(:,2))
+title('Airfoil Geometry')
+xlabel('x-coordinate (m)')
+ylabel('y-coordinate (m)')
+axis equal
+saveas(figure(1), 'Bare.png')
+\end{lstlisting}
+$$$$
+The airfoil geometry without grids is shown below,
+\\~\\\includegraphics[scale=\size]{Bare.png}
+\\~\\The full computational domain of the finest grid is shown below,
+\\~\\\includegraphics[scale=0.61]{Full_Computational_Domain.png}
+\\~\\The close-up view of the airfoil is shown below,
+\\~\\\includegraphics[scale=0.6]{Airfoil_Grid_Matlab.png}
+\\~\\The close-up view of the leading edge of the airfoil is shown below,
+\\~\\\includegraphics[scale=0.6]{LE_Grid_Matlab.png}
+\\~\\The close-up view of the trailing edge of the airfoil is shown below,
+\\~\\\includegraphics[scale=0.65]{TE_Grid_Matlab.png}
+\\~\\There are skewed grids. These skewed grids tend to occur at the leading edge and trailing edge of the airfoil. The trailing edge airfoil grids are more skewed than their leading edge counterparts. The more extremely skewed grids occur at the cusp of the airfoil's trailing edge.
+%Seperator
+%Seperator
+\subsection{Part d}
+The Matlab script to plot the velocity field is shown below,
+\begin{lstlisting}[language = Matlab]
+Author: Hans C. Suganda
+
+%Load Data
+load x.txt
+load y.txt
+load u.txt
+load v.txt
+
+%Adjusts Scaling
+scale = 0.01;
+
+%Plot Commands
+figure(1)
+quiver(x,y,u,v,scale)
+title('Airfoil Velocity Field')
+xlabel('x-coordinate (m)')
+ylabel('y-coordinate (m)')
+axis equal
+\end{lstlisting}
+$$$$
+The velocity field near the leading edge of the airfoil,
+\\~\\\includegraphics[scale=\size]{Velocity_Profile_LE.png}
+\\~\\The velocity field near the upper surface of the airfoil,
+\\~\\\includegraphics[scale=\size]{Velocity_Profile_Upper.png}
+\\~\\The velocity field near the lower surface of the airfoil,
+\\~\\\includegraphics[scale=\size]{Velocity_Profile_Lower.png}
+\\~\\The velocity field near the trailing edge of the airfoil,
+\\~\\\includegraphics[scale=\size]{Velocity_Profile_TE.png}
+\\~\\The slip boundary conditions have been succesfully implemented on the airfoil.
+%Seperator
+%Seperator
+\subsection{Part e}
+The Matlab script to plot the streamfunction is shown below,
+\begin{lstlisting}[language = Matlab]
+%Author: Hans C. Suganda
+
+%Load Data
+load x.txt
+load y.txt
+load psi.txt
+
+subtr = psi(1,:);
+if (subtr(1) == subtr(3))
+    
+    %Subtract Streamline
+    subtr = subtr(1);
+    psi = psi - subtr;
+
+    %Determine Scaling
+    levels = [-10.0:0.25:10.0, 0.0, eps];
+
+    %Plot Commands
+    figure(1)
+    contour(x,y,psi,levels)
+    title('Airfoil Streamlines')
+    xlabel('x-coordinate (m)')
+    ylabel('y-coordinate (m)')
+    axis equal
+else
+    fprintf('Mismatch of Streamlines!')
+end
+\end{lstlisting}
+$$$$
+An overall view of the streamlines is shown below,
+\\~\\\includegraphics[scale=\sizel]{Streamline_General.png}
+\\~\\A detailed view of the streamlines is shown below,
+\\~\\\includegraphics[scale=\sizel]{Streamline_Detail.png}
+%Seperator
+%Seperator
+\subsection{Part f}
+The matlab script below is used to generate the pressure contour plot and the XY pressure plot,
+\begin{lstlisting}[language=matlab]
+%Author: Hans C. Suganda
+
+%Load Data
+load x.txt
+load y.txt
+load cp.txt
+
+%Preessure Contour
+figure(1)
+contourf(x,y,cp,[-10:0.25:1,eps])
+title('Airfoil Pressure Field')
+xlabel('x-coordinate (m)')
+ylabel('y-coordinate (m)')
+colorbar
+axis equal
+
+%XY Plot
+figure(2)
+plot(x(1,:), cp(1,:), '-k')
+set(gca,'ydir','reverse')
+title('Pressure on Airfoil')
+xlabel('x/c')
+ylabel('c_P')
+\end{lstlisting}
+$$$$
+The contour plot of the pressure coefficient near the surface of the airfoil is shown below,
+\\~\\\includegraphics[scale=\sizel]{Pressure_Contour_General.png}
+\\~\\The contour plot of the pressure coefficient near the leading edge of the airfoil is shown below,
+\\~\\\includegraphics[scale=\sizel]{Pressure_Contour_LE.png}
+\\~\\The contour plot of the pressure coefficient near the trailing edge of the airfoil is shown below,
+\\~\\\includegraphics[scale=\sizel]{Pressure_Contour_TE.png}
+\\~\\The X-Y plot of the pressure coefficient on the surface of the airfoil as a function of chordwise position $x/c$ is shown below,
+\\~\\\includegraphics[scale=\size]{XY_Pressure_Matlab.png}
+\\~\\The fluid has a greater velocity on the top surface of the airfoil and a lower velocity on the bottom surface of the airfoil. This observation can be inferred from the contour plot and the XY plot. Near the leading edge, the contour shifts from a fade of yellow to a fade of green and then blue. This shows how flow accelerates at the leading edge producing a region where the pressure is very low (in the negatives). The negative coefficient of pressure at the top of the airfoil rises very sharply over the initial bulge of the airfoil and decreases over the chord length. Likewise the positive pressure coefficient at the bottom of the airfoil rose sharply and decrease over the chord length, becoming more negative in the chord-wise direction. The top and bottom curves of the airfoil connects at non-dimensional length $x/c\approx 0$ at the front stagnation point and at $x/c=1$ at the trailing edge stagnation point. The coefficient of pressure for both these stagnation points is $1$.
+\\~\\The pressure being lower at the top of the airfoil and higher at the bottom of the airfoil produces positive lift upwards. It is important to note that potential flow over an airfoil fails to predict drag. This is reflected on how the leading edge has a low coefficient of pressure. The low coefficient of pressure region at the leading edge sucks the airfoil forward. Though low coefficient of pressure at the leading edge does not guarantee zero drag being predicted, it indicates that drag is relatively low. Running \url{sor.f} also yields an incredibly low amount of drag at the order of magnitude $10^{-5}$. This goes to show that the numerical result and theoretical prediction for potential flow over an airfoil having zero drag to agree well. 
+%Seperator
+%Seperator
+\subsection{Part g}
+For the angle of attack $\a=1^{\circ}$, the general view of the streamlines is shown below,
+\\~\\\includegraphics[scale=\sizel]{Streamline_General_01.png}
+\\~\\A detailed view of the streamlines for the new angle of attack is shown below,
+\\~\\\includegraphics[scale=\sizel]{Streamline_Detail_01.png}
+\\~\\The corresponding far view of the pressure coefficient contour plot,
+\\~\\\includegraphics[scale=\sizel]{Far_01.png}
+\\~\\The corresponding general view of the pressure coefficient contour plot,
+\\~\\\includegraphics[scale=\sizel]{Pressure_Contour_General_01.png}
+\\~\\The pressure coefficient contour near the leading edge,
+\\~\\\includegraphics[scale=\sizel]{Pressure_Contour_LE_01.png}
+\\~\\The pressure coefficient contour near the trailing edge,
+\\~\\\includegraphics[scale=\sizel]{Pressure_Contour_TE_01.png}
+\\~\\The corresponding X-Y plot of the pressure coefficient,
+\\~\\\includegraphics[scale=\size]{XY_Pressure_Matlab_01.png}
+\\~\\To make a direct comparison meaningful, the pressure contour plot level scaling for the airfoil with angle of attack $\a=1^{\circ}$ and angle of attack $\a=10^{\circ}$ is kept the same. Therefore, the same shade of color in both the pressure contour plot when $\a=1^\circ$ and $\a=10^\circ$ represents the same pressure coefficient. 
+\\~\\By comparing the XY plot to the contour plot, the shade of blue indicates a lower coefficient of pressure meanwhile the shade of yellow is asociated to a higher coefficient of pressure. For the airfoil at angle of attack $\a=10^\circ$, most of the computational domain is shaded in yellow meanwhile for the airfoil at angle of attack $\a=1^\circ$, most of the computational domain is shaded in blue. The airfoil turning the fluid flow causes the fluid to slow down in the case of $\a=10^\circ$. A slower fluid velocity causes a higher coefficient of pressure and hence, why most of the computational domain is marked in yellow. In contrast, when $\a=1^\circ$, most of the fluid flow is turned very little. Hence, the free-stream flow is largely undisturbed. This causes the fluid flow to remain travelling quickly which leads to a low coefficient of pressure throughout the computational domain. This in turn marks most of the computational domain in blue.
+\\~\\In the case of the angle of attack $\a=10^\circ$, stagnation point seems to occur at the upper edge of the airfoil slightly away from $x/c=0$. In the case of the angle of attack $\a=1^\circ$, stagnation point seems to occur at the lower edge of the airfoil slightly away from $x/c=0$. Stagnation points occur at the region where the shading is yellow for the leading edge and green for the trailing edge. 
+\\~\\Observing the XY pressure distribution plot when angle of attack $\a=1^\circ$, the coefficient of pressure at the top of the airfoil is less negative than the case when angle of attack $\a=10^\circ$. The coefficient of pressure at the bottom of the airfoil is also less positive when angle of attack $\a=1^\circ$ compared to when angle of attack $\a=10^\circ$. These two observable effects lead the airfoil at angle of attack $\a=1^\circ$ to have a lower coefficient of lift compared to the airfoil at angle of attack $\a=10^\circ$.
+%Seperator
+%Seperator
+%Seperator
+\section{Problem 2}
+\begin{comment}
+\end{comment}
+%Seperator
+%Seperator
+\subsection{Part a}
+Pressure coefficient is typically defined as,
+$$c_p = \f{p-p_\infty}{\dst{\f{1}{2}\rho U_\infty^2}}$$
+According Bernoulli's equation for incompressible fluid flow,
+$$p + \f{1}{2}\rho |\b{u}|^2 = p_\infty + \f{1}{2}\rho U_\infty^2$$
+Manipulating the expression to make $p-p_\infty$ subject of the equation,
+$$p = p_\infty + \f{1}{2}\rho U_\infty^2 - \f{1}{2}\rho |\b{u}|^2$$
+$$p - p_\infty =  \f{1}{2}\rho U_\infty^2 - \f{1}{2}\rho |\b{u}|^2$$
+Substituting into the expression for coefficient of pressure,
+$$c_p = \f{\dst{\f{1}{2}\rho U_\infty^2 - \f{1}{2}\rho |\b{u}|^2}}{\dst{\f{1}{2}\rho U_\infty^2}} = \f{\dst{\f{1}{2}\rho U_\infty^2}}{\dst{\f{1}{2}\rho U_\infty^2}} - \f{\dst{\f{1}{2}\rho |\b{u}|^2}}{\dst{\f{1}{2}\rho U_\infty^2}} = 1 - \f{\dst{ |\b{u}|^2}}{\dst{ U_\infty^2}} = 1 - \l(\f{\dst{ |\b{u}|}}{\dst{ U_\infty}}\r)^2$$
+$$\l(\f{\dst{ |\b{u}|}}{\dst{ U_\infty}}\r)^2 = 1 - c_p$$
+$$\f{\dst{ |\b{u}|}}{\dst{ U_\infty}} = \sqrt{\dst{1 - c_p}}$$
+%Seperator
+%Seperator
+\subsection{Part b}
+The Matlab script below plots $\dst{|\b{u}|/U_\infty}$ as a function of non-dimensional arc length $s/c$
+\begin{lstlisting}[language=Matlab]
+%Author: Hans C. Suganda
+
+%Load Data
+load x.txt
+load y.txt
+load cp.txt
+
+%Computing Arch Length
+x = x(1,:);
+y = y(1,:);
+s(1) = 0;
+for i = 1:(length(x)-1)
+    deltax = x(i+1)-x(i);
+    deltay = y(i+1)-y(i);
+    s(i+1) = s(i) + sqrt(deltax^2+deltay^2);
+end
+
+%Computing Non-Dimensional Velocity
+cp = cp(1,:);
+cp = sqrt(1-cp);
+
+%Computing Derivative
+index2 = 85; %By Inspection of graph
+index1 = 84; %By Inspection of graph
+numerator = cp(index2)-cp(index1);
+denominator = s(index2)-s(index1);
+der = numerator/denominator
+
+%Non-Dimensional Velocity Plot
+figure(2)
+plot(s, cp, '-k')
+title('Non-Dimensional Velocity')
+xlabel('s/c')
+ylabel('u/u_\infty')
+\end{lstlisting}
+$$$$
+The plot of the non-dimensional velocity with respect to non-dimensional arc length is shown below,
+\\~\\\includegraphics[scale=\size]{Non_Dimensional_Velocity.png}
+\\~\\The non-dimensional strain rate,
+$$\l|\f{\Delta(u/U_\infty)}{\Delta(s/c)}\r| \approx 8.12488653555$$
+%Seperator
+%Seperator
+\subsection{Part c}
+Let
+$$\be = \l|\f{\Delta(u/U_\infty)}{\Delta(s/c)}\r| = 8.12488653555$$
+By approximation that the points used in part b is very close to each other,
+$$\be \approx \l|\f{d(u/U_\infty)}{d(s/c)}\r| $$
+Substituting for $\be$,
+$$\f{\delta_{99}}{c} = \f{2.38}{\sqrt{Re_c\times \be}}$$
+Substituting for the relevant values,
+$$\f{\delta_{99}}{c} = \f{2.38}{\sqrt{(10^6)\times (8.12488653555)}} = 8.3496506448372\times 10^{-4}$$
+Substituting for $c = 1$,
+$$\delta_{99} = 8.3496506448372\times 10^{-4}\,m$$
+%Seperator
+%Seperator
+%Seperator
+\section{Problem 3}
+\begin{comment}
+\end{comment}
+%Seperator
+%Seperator
+\subsection{Part ai}
+The grid for the whole airfoil is shown below,
+\\~\\\includegraphics[scale=\sized]{Airfoil_Grid_Ansys.png}
+\\~\\The grid close to the leading edge region is shown below,
+\\~\\\includegraphics[scale=\sized]{LE_Grid_Ansys.png}
+\\~\\The grid close to the trailing edge region is shown below,
+\\~\\\includegraphics[scale=\sized]{TE_Grid_Ansys.png}
+%Seperator
+%Seperator
+\subsection{Part aii}
+The general contour plot of the streamlines around the airfoil is shown below,
+\\~\\\includegraphics[scale=\sizes]{Streamline_General_Ansys.png}
+\\~\\A detailed contour plot of the streamliens around the airfoil is shown below,
+\\~\\\includegraphics[scale=\sizes]{Streamline_Detailed_Ansys.png}
+%Seperator
+%Seperator
+\subsection{Part aiii}
+The lift coefficient of the airfoil, 
+$$c_L = 0.64411652289757$$
+%Seperator
+%Seperator
+\subsection{Part b}
+The unstructured mesh for the whole airfoil is shown below,
+\\~\\\includegraphics[scale=\sizes]{Unstructured_General_Ansys.png}
+\\~\\The unstructured mesh for the leading edge is shown below,
+\\~\\\includegraphics[scale=\sizes]{Unstructured_LE_Ansys.png}
+\\~\\The unstructured mesh for the trailing edge is shown below,
+\\~\\\includegraphics[scale=\sizes]{Unstructured_TE_Ansys.png}
+%Seperator
+%Seperator
+%Seperator
+\end{center}
+
+\end{document}
+
+

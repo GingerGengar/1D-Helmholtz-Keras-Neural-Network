@@ -1,0 +1,65 @@
+#!/bin/bash
+
+#Author: Hyahoos
+
+#Name of the NN_Train training Algorithm
+NN_Train="helm1d_locdnn_dgm_adam_unicolloc.py"
+Error="Error_Analysis.py"
+
+#Read Width Range
+echo -n 'Minimum Width: '; read MinWidth
+echo -n 'Width Step: '; read StepWidth
+echo -n 'Number of Width Steps: '; read NumStepW
+
+#Read Depth Range
+echo -n 'Minimum Depth: '; read MinDepth
+echo -n 'Depth Step: '; read StepDepth
+echo -n 'Number of Depth Steps: '; read NumStepB
+
+#Printing Mode
+echo -n 'Log Level: '; read log
+
+#Initialization of Width and Depth
+declare -i width=0
+declare -i depth=0
+
+#Main Loop Body
+for ((indexw = 0; indexw <= NumStepW; indexw++)) ;do
+    for ((indexb = 0; indexb <= NumStepB; indexb++)) ;do
+        
+        #Updating the Width and Depth
+        width=$((indexw * StepWidth + MinWidth)) 
+        depth=$((indexb * StepDepth + MinDepth)) 
+
+        #Possible Show Progress
+        if (($log >= 1)); then
+        echo  'Running for Width: ' $width ' Depth: ' $depth
+        fi
+        
+        #Run Neural Network Given the Width and Depth
+        if (($log >= 2)); then
+            python $NN_Train $width $depth #Show NN_Train outputs
+        else
+            python $NN_Train $width $depth >/dev/null 2>&1 #Hide NN_Train outputs
+        fi
+        
+        #Go to where data is located
+        cd data/Helm1D_LocDNN_DGM_Adam_UniformColloc/
+
+        #Rename output files 
+        mv helm1d_locdnn_dgm_adam_soln.dat* "Solution_"$width"_"$depth".dat"
+        mv helm1d_locdnn_dgm_adam_param.dat* "Parameter_"$width"_"$depth".dat"
+        mv helm1d_locdnn_dgm_adam_weights.hd5* "WeightFile_"$width"_"$depth".dat"
+        mv helm1d_locdnn_dgm_adam_history.csv* "History_"$width"_"$depth".csv"
+        mv helm1d_locdnn_dgm_adam_init_weights.hd5* "Weight_Initializations_"$width"_"$depth".hd5"
+
+        #Run the Post-Processing Utilities
+        python $Error "Solution_"$width"_"$depth".dat" "History_"$width"_"$depth".csv" $width $depth >> NN_Architecture_Error.txt
+        
+        #Go back to original directory
+        cd ../..
+    done
+done
+
+echo 'Cannon Ringing...'
+

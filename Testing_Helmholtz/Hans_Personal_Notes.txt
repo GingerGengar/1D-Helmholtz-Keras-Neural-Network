@@ -1,0 +1,147 @@
+Before the main file, there are some neural network related variable declarations at the very top of the script (80:133). What it contains:
+{
+	Neural Network Architecture:
+	{
+		How many Hidden Layers
+		Their activations
+	}
+	
+	Training Details:
+	{
+		Epoch Size
+		Maximum Batch Size
+	}
+
+	Theoretical Stuff:
+	{
+		C_k continuity
+		Lambda Constant
+	}
+}
+
+
+What Main contains:
+{
+	File pathing (1194:1204)
+
+	Unknown Steps, likely theoretical (1206:1207)	
+	
+	Some Training Details but unknown (1213:1214)
+		What is early stop patience? Is there a reason why max_epochs = MAX_EPOCHS?, max_epochs is not modified, so there is no purpose declaring another variable max_epochs?
+
+	Boundary Condition Declarations (1216:1220)
+
+	Build Model
+		The model reading is already included in line 1228?
+
+	Training Model 
+		What is learning rate?
+
+	Saving the weights of the model to a file
+
+	Prediction over dataset
+
+	Error Generation
+		What is maximum error? What is l2 error? 
+
+	General Questions:
+		Is this script just reading the analytical solution and then optimizing the weights and biases accordingly? Where is the equations being enforced on? Does the neural network in question not have any bias?
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Function Calls:
+Main
+    np.zeros #Conventional Numpy zeros
+    
+    the_anal_soln # *
+
+    calc-jacobian # *
+
+    build_model #Definition of Neural Network Architecture *
+        build_multi_element_model # *
+            build_submodel # *
+                keras.layers.Input
+                input_scale_func_generator #Seems to return a linear function
+                keras.layers.Lambda
+                keras.layers.Dense
+                DkModel
+                    @tf.function
+                    train_step
+                        tf.GradientTape
+                        watch
+                        self
+                        isinstance
+                        tf.gradient
+                        compiled_loss
+                        optimizer.apply_gradients
+                        compiled_metrics.update_state
+                    train_step_lbfgs
+                        tf.GradientTape
+                        watch
+                        self
+                        isinstance
+                        gradient
+                        compiled_loss
+            model_set.append
+            DkModel
+        multi_elem_loss_generator # *
+            one_elem_loss_generator
+                loss_generator_Ck
+                Equation_Residual
+                The_Loss_Func
+                The_First_Loss_Func
+        compile # *
+
+    my_util.mkdir #Making Directories
+    load_weights #Making Use of Previous Training
+    get_learning_rate #
+    set_learning_rate #
+    gen_training_data #
+    keras.callbacks.EarlyStopping #Unknown
+    
+    the_DNN.fit # *
+
+    my_util.get_timestamp #Timing Purposes
+    save_weights #Writing to Files
+    gen_predict_data
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

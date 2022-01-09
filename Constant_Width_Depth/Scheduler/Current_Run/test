@@ -1,0 +1,17 @@
+#!/bin/bash
+
+read input
+echo $input
+read input
+echo $input
+read input
+echo $input
+read input
+echo $input
+read input
+echo $input
+read input
+echo $input
+read input
+echo $input
+

@@ -1,0 +1,25 @@
+\contentsline {section}{\numberline {0.1}Rationale}{2}{section.0.1}%
+\contentsline {section}{\numberline {0.2}Algorithm Changes}{2}{section.0.2}%
+\contentsline {subsection}{\numberline {0.2.1}Exponential LR}{2}{subsection.0.2.1}%
+\contentsline {subsection}{\numberline {0.2.2}Polynomial LR}{2}{subsection.0.2.2}%
+\contentsline {subsection}{\numberline {0.2.3}Inverse LR}{2}{subsection.0.2.3}%
+\contentsline {section}{\numberline {0.3}Choice of Parameters}{3}{section.0.3}%
+\contentsline {subsection}{\numberline {0.3.1}Exponential LR}{3}{subsection.0.3.1}%
+\contentsline {subsection}{\numberline {0.3.2}Polynomial LR}{3}{subsection.0.3.2}%
+\contentsline {subsection}{\numberline {0.3.3}Inverse LR}{3}{subsection.0.3.3}%
+\contentsline {section}{\numberline {0.4}Results}{4}{section.0.4}%
+\contentsline {subsection}{\numberline {0.4.1}Exponential LR}{4}{subsection.0.4.1}%
+\contentsline {subsubsection}{Plots Across Constant Width}{4}{section*.2}%
+\contentsline {subsubsection}{Plots Across Constant Depth}{4}{section*.3}%
+\contentsline {subsubsection}{Comparison to Fixed LR}{4}{section*.4}%
+\contentsline {subsection}{\numberline {0.4.2}Polynomial LR}{4}{subsection.0.4.2}%
+\contentsline {subsubsection}{Plots Across Constant Width}{4}{section*.5}%
+\contentsline {subsubsection}{Plots Across Constant Depth}{4}{section*.6}%
+\contentsline {subsubsection}{Comparison to Fixed LR}{4}{section*.7}%
+\contentsline {subsection}{\numberline {0.4.3}Inverse LR}{4}{subsection.0.4.3}%
+\contentsline {subsubsection}{Plots Across Constant Width}{4}{section*.8}%
+\contentsline {subsubsection}{Plots Across Constant Depth}{4}{section*.9}%
+\contentsline {subsubsection}{Comparison to Fixed LR}{4}{section*.10}%
+\contentsline {section}{\numberline {0.5}Analysis}{4}{section.0.5}%
+\contentsline {section}{\numberline {0.6}Appendix}{4}{section.0.6}%
+\contentsline {subsection}{\numberline {0.6.1}Tabulated Error}{4}{subsection.0.6.1}%

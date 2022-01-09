@@ -1,0 +1,13 @@
+#!/bin/bash
+
+#Name of Input Files
+Name="UI"
+
+#Name of Script to run
+Scr="NN_WB"
+
+for((indexr = 1; indexr <= 3; indexr++)) ;do
+    sh $Scr < $Name"_"$indexr".txt" >> NN_logs.txt
+    echo -e '\n\n\n' >> NN_logs.txt
+done
+echo 'Lactose Cactus...'
