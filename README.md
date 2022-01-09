@@ -19,12 +19,15 @@
 ## Custom Training 
 
 -Tried to implement loss function
+
 -Failed, problem not well-posed
+
 -Further study need to be conducted on custom-training loops
 
 ## Testing Helmholtz 
 
 -First Time testing the different NN parameters
+
 -Manual Testing, works fine
 
 ## Constant Width Depth
@@ -34,15 +37,21 @@ Refers to a collection of computational experiments for Neural Networks of ident
 ### Automation
 
 -First Automation on Constant Width and Depth
+
 -data is a directory made by the helm1d script
+
 -Latex contains the necessary documentations
 
 ### Convergence
 
 -Added Convergence Testing to automated testing
+
 -Current Run is a directory used to generate the data
+
 -Inspection Data are just snapshots of different trials
+
 -Post Proc Tools contain the various scripts for post-processing
+
 -Scheduler Trial is an attempt at changing the training scheduler
 
 ### Modified Helmholtz
