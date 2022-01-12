@@ -1,5 +1,5 @@
 # Fdb version 3
-["pdflatex"] 1641764206 "Scheduler.tex" "Scheduler.pdf" "Scheduler" 1641764207
+["pdflatex"] 1641953309 "Scheduler.tex" "Scheduler.pdf" "Scheduler" 1641953310
   "/usr/share/texmf-dist/fonts/map/fontname/texfonts.map" 1640600964 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1640600964 1004 54797486969f23fa377b128694d548df ""
   "/usr/share/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1640600964 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -102,10 +102,19 @@
   "/usr/share/texmf-dist/web2c/texmf.cnf" 1640600964 39911 2da6c67557ec033436fe5418a70a8a61 ""
   "/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map" 1640736816 4243317 6cd4c1d3b72728bfa7db8ef2e14c0430 ""
   "/var/lib/texmf/web2c/pdftex/pdflatex.fmt" 1640736803 2920111 b8331b0185dfd24802acab02a5d29875 ""
-  "Scheduler.aux" 1641764207 3825 bd54ddcaf4d609c2eeaef08e4cabdc8a "pdflatex"
-  "Scheduler.out" 1641764207 1901 5a1baa6c7aaa00fac06550a9639e0657 "pdflatex"
-  "Scheduler.tex" 1641764205 24756 2433dd2d6f37a9c4a58a36f1872fd533 ""
-  "Scheduler.toc" 1641764207 1916 b18a05b03a3cc2e646eaf666aa475aac "pdflatex"
+  "Comparison_Expo.png" 1641952499 59472 16928cde5de2483827fbeb4fadef77fb ""
+  "Comparison_Inverse.png" 1641951736 74382 db370c0556d24d8fc04cfe6a5967558b ""
+  "Comparison_Poly.png" 1641951469 63731 e67faa43007e9a1be6d67c65f590dfd7 ""
+  "Expo_Cons_D.png" 1641937178 85598 113cf11a4960d95bc10bc78527cf43e7 ""
+  "Expo_Cons_W.png" 1641935711 106878 bac1cab19f6fd2047a010777a3f0d6fb ""
+  "Inv_Cons_D.png" 1641937191 81665 c6883db70d288ebca12182b0c6a2b687 ""
+  "Inv_Cons_W.png" 1641935720 102142 8a5c91e828fe8ff53bd2d18d58fcccd2 ""
+  "Poly_Cons_D.png" 1641937199 86817 61fe56dfcb6b9e8578e53bef2ca5eaf6 ""
+  "Poly_Cons_W.png" 1641935730 97136 29d621f7357322cec960754a4fa2a7d7 ""
+  "Scheduler.aux" 1641953310 3513 8f846284f05cc95a6087b906db749439 "pdflatex"
+  "Scheduler.out" 1641953310 1819 e232b9d490b3f183b048396589b25840 "pdflatex"
+  "Scheduler.tex" 1641953307 12571 d3c097e65f86a77d29f00782839888f1 ""
+  "Scheduler.toc" 1641953310 1842 616e5ac159815e6092d04987b20e3c16 "pdflatex"
   (generated)
   "Scheduler.aux"
   "Scheduler.log"

@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import glob
 
 #Files to Open
-filename_list = glob.glob('*_180_*.csv')
+filename_list = glob.glob('*_80_*.csv')
 
 #Plotting
 plt.figure()

@@ -62,5 +62,8 @@ Refers to a collection of computational experiments for Neural Networks of ident
 
 -Combines the changed scheduler with the automation scripts
 
+-Made directories each for polynomial learning rate, inverse learning rate, exponential learning rate
 
+-Added a new post-processing script, 2-Plot which enables to plot 2 simulatenous histories in one graph
 
+-Added a new directory named comparison to compare the constant learning rate with the changed scheduled learning rates
